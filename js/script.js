@@ -53,13 +53,13 @@ This function will create and insert/append the elements needed for the paginati
 
 function addPagination(list) {
 	// create a variable to calculate the number of pages needed
-	let numOfPages = list.length / itemsPerPage;
+	let pageNumber = list.length / itemsPerPage;
 	// select the element with a class of `link-list` and assign it to a variable
 	let linkList = document.querySelector('.link-list');
 	// set the innerHTML property of the variable you just created to an empty string
 	linkList.innerHTML = '';
 	// loop over the number of pages needed
-	for (let i = 0; i < numOfPages; i++) {
+	for (let i = 0; i < pageNumber; i++) {
 		// create the elements needed to display the pagination button
 		linkList.innerHTML += `
     <li>
@@ -69,17 +69,17 @@ function addPagination(list) {
 	}
 
 	// give the first pagination button a class of "active"
-	let pageBtns = linkList.querySelectorAll('BUTTON');
-	if (pageBtns.length > 0) {
-		pageBtns[0].classList.add('active');
+	let pageButtons = linkList.querySelectorAll('BUTTON');
+	if (pageButtons.length > 0) {
+		pageButtons[0].classList.add('active');
 	}
 	// create an event listener on the `link-list` element
 	linkList.addEventListener('click', (e) => {
 		// if the click target is a button:
 		if (e.target.tagName === 'BUTTON') {
-			for (let i = 0; i < pageBtns.length; i++) {
+			for (let i = 0; i < pageButtons.length; i++) {
 				// remove the "active" class from the previous button
-				pageBtns[i].classList = '';
+				pageButtons[i].classList = '';
 				// add the active class to the clicked button
 				e.target.classList.add('active');
 				// call the showPage function passing the `list` parameter and page to display as arguments
@@ -90,5 +90,9 @@ function addPagination(list) {
 	});
 }
 
+//Calling Functions
+
+//Data.js file and page 1
 showPage(data, 1);
+//Data.js file
 addPagination(data);
